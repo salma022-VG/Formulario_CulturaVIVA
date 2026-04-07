@@ -1,0 +1,1259 @@
+​
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultura Viva – Convocatoria de Artistas</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        :root {
+            --ink: #0d0d0d;
+            --cream: #f5f0e8;
+            --gold: #c9a84c;
+            --rust: #c0392b;
+            --teal: #1a6b6b;
+            --soft: #ede8de;
+            --white: #ffffff;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ─── NAV ─── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 32px;
+            background: rgba(245, 240, 232, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 0.04em;
+            color: var(--ink);
+        }
+
+        .nav-logo span {
+            color: var(--gold);
+        }
+
+        .nav-btn {
+            background: var(--ink);
+            color: var(--cream);
+            border: none;
+            border-radius: 100px;
+            padding: 8px 20px;
+            font-size: 0.82rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            letter-spacing: 0.04em;
+        }
+
+        .nav-btn:hover {
+            background: var(--teal);
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 80% 20%, rgba(201, 168, 76, 0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 60% at 10% 80%, rgba(26, 107, 107, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-deco {
+            position: absolute;
+            font-size: clamp(120px, 20vw, 260px);
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            color: rgba(201, 168, 76, 0.08);
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .hero-deco.left {
+            top: 10%;
+            left: -4%;
+        }
+
+        .hero-deco.right {
+            bottom: 8%;
+            right: -4%;
+        }
+
+        .hero-inner {
+            text-align: center;
+            max-width: 720px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--ink);
+            color: var(--gold);
+            border-radius: 100px;
+            padding: 6px 18px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        .hero-eyebrow::before {
+            content: '◆';
+            font-size: 0.6rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 9vw, 6.5rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 .line-gold {
+            color: var(--gold);
+        }
+
+        .hero h1 .line-teal {
+            color: var(--teal);
+        }
+
+        .hero-sub {
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            font-weight: 300;
+            line-height: 1.7;
+            color: #444;
+            max-width: 540px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-arts {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 48px;
+        }
+
+        .art-pill {
+            background: var(--soft);
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            border-radius: 100px;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #555;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--ink);
+            color: var(--cream);
+            border: none;
+            border-radius: 100px;
+            padding: 18px 40px;
+            font-size: 1rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            box-shadow: 0 4px 24px rgba(13, 13, 13, 0.18);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(13, 13, 13, 0.25);
+        }
+
+        .cta-btn .arr {
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+
+        .cta-btn:hover .arr {
+            transform: translateX(4px);
+        }
+
+        /* ─── FORM SECTION ─── */
+        .form-section {
+            padding: 80px 24px 120px;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--teal);
+            margin-bottom: 14px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: var(--teal);
+        }
+
+        .form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 48px;
+        }
+
+        .step-block {
+            margin-bottom: 56px;
+            animation: fadeUp 0.4s ease both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.35);
+        }
+
+        .step-num {
+            width: 40px;
+            height: 40px;
+            background: var(--ink);
+            color: var(--gold);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .req {
+            color: var(--rust);
+            margin-left: 3px;
+        }
+
+        .opt {
+            color: #999;
+            font-size: 0.78rem;
+            font-weight: 400;
+            margin-left: 4px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1.5px solid #ddd;
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            color: var(--ink);
+            background: var(--white);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(26, 107, 107, 0.12);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .check-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 14px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+            user-select: none;
+        }
+
+        .check-item:hover {
+            border-color: var(--teal);
+            background: rgba(26, 107, 107, 0.04);
+        }
+
+        .check-item input[type="checkbox"],
+        .check-item input[type="radio"] {
+            width: auto;
+            padding: 0;
+            accent-color: var(--teal);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .check-item span {
+            font-size: 0.88rem;
+            line-height: 1.3;
+        }
+
+        .radio-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .radio-row .check-item {
+            flex: 1 1 150px;
+        }
+
+        /* consent */
+        .consent-box {
+            background: rgba(26, 107, 107, 0.06);
+            border: 1px solid rgba(26, 107, 107, 0.25);
+            border-radius: 14px;
+            padding: 20px;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 16px;
+        }
+
+        .consent-check {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .consent-check input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--teal);
+        }
+
+        /* submit */
+        .submit-btn {
+            width: 100%;
+            background: var(--ink);
+            color: var(--cream);
+            border: none;
+            border-radius: 14px;
+            padding: 18px;
+            font-size: 1rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            margin-top: 8px;
+            letter-spacing: 0.04em;
+        }
+
+        .submit-btn:hover {
+            background: var(--teal);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ─── SUCCESS ─── */
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 60px 24px;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--teal);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 2.2rem;
+            margin: 0 auto 28px;
+        }
+
+        .success-screen h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .success-screen p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .back-btn {
+            background: transparent;
+            color: var(--teal);
+            border: 2px solid var(--teal);
+            border-radius: 100px;
+            padding: 12px 28px;
+            font-size: 0.9rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: var(--teal);
+            color: white;
+        }
+
+        /* ─── QR SECTION ─── */
+        .qr-section {
+            background: var(--ink);
+            color: var(--cream);
+            padding: 80px 24px;
+            text-align: center;
+        }
+
+        .qr-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            margin-bottom: 12px;
+            color: var(--gold);
+        }
+
+        .qr-section p {
+            color: #aaa;
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        .qr-box {
+            display: inline-block;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 8px 48px rgba(0, 0, 0, 0.4);
+            margin-bottom: 20px;
+        }
+
+        #qrcode canvas,
+        #qrcode img {
+            border-radius: 8px;
+        }
+
+        .qr-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #666;
+            margin-top: 12px;
+        }
+
+        /* ─── ADMIN PANEL ─── */
+        .admin-panel {
+            display: none;
+            padding: 80px 24px 120px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .admin-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .admin-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .admin-btn {
+            background: var(--teal);
+            color: white;
+            border: none;
+            border-radius: 100px;
+            padding: 10px 22px;
+            font-size: 0.85rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .admin-btn:hover {
+            opacity: 0.85;
+        }
+
+        .admin-btn.danger {
+            background: var(--rust);
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border: 1px solid #e8e8e8;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-card .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--teal);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-card .lbl {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .entries-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .entries-table th {
+            background: var(--ink);
+            color: var(--cream);
+            padding: 12px 14px;
+            text-align: left;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .entries-table th:first-child {
+            border-radius: 10px 0 0 0;
+        }
+
+        .entries-table th:last-child {
+            border-radius: 0 10px 0 0;
+        }
+
+        .entries-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.88rem;
+            vertical-align: top;
+        }
+
+        .entries-table tr:hover td {
+            background: rgba(26, 107, 107, 0.04);
+        }
+
+        .entries-table tr:last-child td:first-child {
+            border-radius: 0 0 0 10px;
+        }
+
+        .entries-table tr:last-child td:last-child {
+            border-radius: 0 0 10px 0;
+        }
+
+        .table-wrap {
+            background: var(--white);
+            border: 1px solid #e8e8e8;
+            border-radius: 14px;
+            overflow: auto;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #aaa;
+            font-size: 1rem;
+        }
+
+        .empty-state .ico {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--soft);
+            border-top: 1px solid rgba(201, 168, 76, 0.25);
+            padding: 28px 24px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* ─── responsive ─── */
+        @media (max-width: 600px) {
+            .nav {
+                padding: 14px 16px;
+            }
+
+            .check-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-logo">Cultura<span>Viva</span></div>
+        <button class="nav-btn" onclick="toggleAdmin()">Panel de respuestas</button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-deco left">C</div>
+        <div class="hero-deco right">V</div>
+        <div class="hero-inner">
+            <div class="hero-eyebrow">Convocatoria Abierta</div>
+            <h1>
+                <span class="line-gold">Cultura</span><br>
+                <span class="line-teal">Viva</span>
+            </h1>
+            <p class="hero-sub">
+                ¿Eres artista? ¡Estamos buscándote! Estamos creando una gran base de datos de artistas locales para
+                proyectos, colaboraciones, talleres y actividades comunitarias.
+            </p>
+            <div class="hero-arts">
+                <span class="art-pill">🎨 Artes Visuales</span>
+                <span class="art-pill">🎭 Artes Escénicas</span>
+                <span class="art-pill">🎶 Música</span>
+                <span class="art-pill">✍️ Literatura</span>
+                <span class="art-pill">🎬 Audiovisual</span>
+                <span class="art-pill">🧵 Diseño</span>
+                <span class="art-pill">💡 Arte Conceptual</span>
+            </div>
+            <a href="#formulario" class="cta-btn">
+                Inscríbete ahora <span class="arr">→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- FORM SECTION -->
+    <section class="form-section" id="formulario">
+
+        <!-- FORM -->
+        <div id="formWrap">
+            <div class="section-label">Formulario de inscripción</div>
+            <h2 class="form-title">Cuéntanos sobre ti<br>y tu arte ✦</h2>
+
+            <form id="mainForm" onsubmit="submitForm(event)">
+
+                <!-- BLOQUE 1: INFORMACIÓN PERSONAL -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <div class="step-num">1</div>
+                        <div class="step-name">Información Personal</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Nombre completo <span class="req">*</span></label>
+                        <input type="text" id="nombre" placeholder="Ej: María García" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Edad <span class="req">*</span></label>
+                        <div class="radio-row">
+                            <label class="check-item"><input type="radio" name="edad" value="Menor de 18"
+                                    required><span>Menor de 18</span></label>
+                            <label class="check-item"><input type="radio" name="edad" value="18–25"><span>18 –
+                                    25</span></label>
+                            <label class="check-item"><input type="radio" name="edad" value="26–40"><span>26 –
+                                    40</span></label>
+                            <label class="check-item"><input type="radio" name="edad" value="41–60"><span>41 –
+                                    60</span></label>
+                            <label class="check-item"><input type="radio" name="edad" value="Más de 60"><span>Más de
+                                    60</span></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Género <span class="opt">(opcional)</span></label>
+                        <div class="radio-row">
+                            <label class="check-item"><input type="radio" name="genero"
+                                    value="Femenino"><span>Femenino</span></label>
+                            <label class="check-item"><input type="radio" name="genero"
+                                    value="Masculino"><span>Masculino</span></label>
+                            <label class="check-item"><input type="radio" name="genero"
+                                    value="No binario / Otro"><span>No binario / Otro</span></label>
+                            <label class="check-item"><input type="radio" name="genero"
+                                    value="Prefiero no responder"><span>Prefiero no responder</span></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Barrio o sector donde resides <span class="req">*</span></label>
+                        <input type="text" id="barrio" placeholder="Ej: Villa Esperanza" required>
+                    </div>
+                </div>
+
+                <!-- BLOQUE 2: CONTACTO -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <div class="step-num">2</div>
+                        <div class="step-name">Información de Contacto</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Número de celular / WhatsApp <span class="req">*</span></label>
+                        <input type="tel" id="celular" placeholder="Ej: 300 123 4567" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Correo electrónico <span class="opt">(opcional)</span></label>
+                        <input type="email" id="correo" placeholder="Ej: arte@correo.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Red social artística <span class="opt">(opcional)</span></label>
+                        <input type="text" id="redes" placeholder="Ej: @miarte en Instagram">
+                    </div>
+                </div>
+
+                <!-- BLOQUE 3: INFO ARTÍSTICA -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <div class="step-num">3</div>
+                        <div class="step-name">Información Artística</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Disciplina(s) artística(s) que practicas <span class="req">*</span>
+                            <span class="opt">(puedes marcar varias)</span></label>
+                        <div class="check-grid">
+                            <label class="check-item"><input type="checkbox" name="disciplina" value="Música"><span>🎶
+                                    Música (instrumentista / cantante / productor)</span></label>
+                            <label class="check-item"><input type="checkbox" name="disciplina" value="Danza"><span>💃
+                                    Danza</span></label>
+                            <label class="check-item"><input type="checkbox" name="disciplina"
+                                    value="Teatro / Circo / Performance"><span>🎭 Teatro / Circo /
+                                    Performance</span></label>
+                            <label class="check-item"><input type="checkbox" name="disciplina"
+                                    value="Artes Visuales"><span>🎨 Artes visuales (pintura, escultura,
+                                    fotografía…)</span></label>
+                            <label class="check-item"><input type="checkbox" name="disciplina"
+                                    value="Literatura / Escritura"><span>✍️ Literatura / Escritura</span></label>
+                            <label class="check-item"><input type="checkbox" name="disciplina"
+                                    value="Cine / Audiovisual / Animación"><span>🎬 Cine / Audiovisual /
+                                    Animación</span></label>
+                            <label class="check-item"><input type="checkbox" name="disciplina"
+                                    value="Diseño / Moda / Artes aplicadas"><span>🧵 Diseño / Moda / Artes
+                                    aplicadas</span></label>
+                        </div>
+                        <div style="margin-top:10px;">
+                            <label class="form-label" style="font-size:0.82rem;">Otra disciplina:</label>
+                            <input type="text" id="otraDisciplina" placeholder="Escribe tu disciplina aquí">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Nivel de experiencia <span class="req">*</span></label>
+                        <div class="radio-row">
+                            <label class="check-item"><input type="radio" name="nivel" value="Básico / aficionado"
+                                    required><span>🌱 Básico / aprendiz / aficionado</span></label>
+                            <label class="check-item"><input type="radio" name="nivel"
+                                    value="Medio / en formación"><span>🌿 Medio / en formación</span></label>
+                            <label class="check-item"><input type="radio" name="nivel" value="Profesional"><span>🌳
+                                    Profesional / con experiencia consolidada</span></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">¿Cuál es tu rol principal en el arte? <span class="opt">(puedes marcar
+                                varias)</span></label>
+                        <div class="check-grid">
+                            <label class="check-item"><input type="checkbox" name="rol"
+                                    value="Intérprete / ejecutante"><span>Intérprete / ejecutante</span></label>
+                            <label class="check-item"><input type="checkbox" name="rol"
+                                    value="Docente / formador"><span>Docente / formador</span></label>
+                            <label class="check-item"><input type="checkbox" name="rol"
+                                    value="Creador / compositor / autor"><span>Creador / compositor /
+                                    autor</span></label>
+                            <label class="check-item"><input type="checkbox" name="rol"
+                                    value="Director(a) artístico(a)"><span>Director(a) artístico(a)</span></label>
+                            <label class="check-item"><input type="checkbox" name="rol"
+                                    value="Gestor(a) cultural"><span>Gestor(a) cultural</span></label>
+                            <label class="check-item"><input type="checkbox" name="rol"
+                                    value="Facilitador comunitario"><span>Facilitador comunitario</span></label>
+                        </div>
+                        <div style="margin-top:10px;">
+                            <input type="text" id="otroRol" placeholder="Otro rol...">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">¿Perteneces actualmente a algún grupo, colectivo, banda o
+                            compañía?</label>
+                        <div class="radio-row">
+                            <label class="check-item"><input type="radio" name="colectivo"
+                                    value="No"><span>No</span></label>
+                            <label class="check-item"><input type="radio" name="colectivo"
+                                    value="Sí"><span>Sí</span></label>
+                        </div>
+                        <div style="margin-top:10px;">
+                            <input type="text" id="nombreColectivo" placeholder="¿Cuál? (si respondiste Sí)">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOQUE 4: PARTICIPACIÓN -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <div class="step-num">4</div>
+                        <div class="step-name">Proyección y Disponibilidad</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">¿Te interesaría ser contactado/a para...? <span class="opt">(marca lo
+                                que te interese)</span></label>
+                        <div class="check-grid">
+                            <label class="check-item"><input type="checkbox" name="interes"
+                                    value="Proyectos colaborativos"><span>🤝 Proyectos colaborativos
+                                    artísticos</span></label>
+                            <label class="check-item"><input type="checkbox" name="interes"
+                                    value="Talleres / formación"><span>📚 Talleres o procesos de
+                                    formación</span></label>
+                            <label class="check-item"><input type="checkbox" name="interes"
+                                    value="Exposiciones / eventos"><span>🎪 Exposiciones / conciertos /
+                                    eventos</span></label>
+                            <label class="check-item"><input type="checkbox" name="interes"
+                                    value="Convocatorias remuneradas"><span>💰 Convocatorias remuneradas</span></label>
+                            <label class="check-item"><input type="checkbox" name="interes"
+                                    value="Acciones comunitarias"><span>🌱 Acciones comunitarias con arte</span></label>
+                            <label class="check-item"><input type="checkbox" name="interes"
+                                    value="Solo base de datos"><span>📋 Solo quiero estar en la base de
+                                    datos</span></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">¿Cuál es tu disponibilidad de tiempo?</label>
+                        <div class="check-grid">
+                            <label class="check-item"><input type="checkbox" name="disponibilidad"
+                                    value="Mañanas (entre semana)"><span>🌅 Mañanas (entre semana)</span></label>
+                            <label class="check-item"><input type="checkbox" name="disponibilidad"
+                                    value="Tardes (entre semana)"><span>🌤️ Tardes (entre semana)</span></label>
+                            <label class="check-item"><input type="checkbox" name="disponibilidad"
+                                    value="Fines de semana"><span>🎉 Fines de semana</span></label>
+                            <label class="check-item"><input type="checkbox" name="disponibilidad"
+                                    value="Horarios flexibles"><span>⏳ Horarios flexibles</span></label>
+                            <label class="check-item"><input type="checkbox" name="disponibilidad"
+                                    value="Sin disponibilidad actual"><span>⏸️ Actualmente no tengo
+                                    disponibilidad</span></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">¿Quieres recibir información cultural por WhatsApp o correo?</label>
+                        <div class="radio-row">
+                            <label class="check-item"><input type="radio" name="infoWhatsapp" value="Sí"><span>✅
+                                    Sí</span></label>
+                            <label class="check-item"><input type="radio" name="infoWhatsapp" value="No"><span>❌
+                                    No</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOQUE 5: AUTORIZACIÓN -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <div class="step-num">5</div>
+                        <div class="step-name">Autorización de Datos</div>
+                    </div>
+
+                    <div class="consent-box">
+                        Autorizo el uso de mis datos personales exclusivamente para fines culturales, comunitarios y
+                        artísticos del proyecto <strong>Cultura Viva</strong>, de acuerdo con la Ley 1581 de 2012
+                        (Colombia) sobre protección de datos personales. Mis datos no serán compartidos con terceros sin
+                        mi consentimiento.
+                    </div>
+                    <label class="consent-check">
+                        <input type="checkbox" id="autorizo" required>
+                        <span>Acepto la autorización de uso de mis datos personales <span class="req">*</span></span>
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    ✦ Enviar inscripción
+                </button>
+            </form>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="success-screen" id="successScreen">
+            <div class="success-icon">🎨</div>
+            <h2>¡Bienvenido/a a<br>Cultura Viva!</h2>
+            <p>Tu inscripción fue registrada exitosamente. Pronto estaremos en contacto contigo para informarte sobre
+                proyectos y actividades artísticas en tu comunidad.</p>
+            <button class="back-btn" onclick="resetForm()">Registrar otro artista</button>
+        </div>
+    </section>
+
+    <!-- QR SECTION -->
+    <section class="qr-section">
+        <h2>Comparte el formulario</h2>
+        <p>Escanea el QR para acceder al formulario desde cualquier celular</p>
+        <div class="qr-box">
+            <div id="qrcode"></div>
+        </div>
+        <p class="qr-label">Cultura Viva · Convocatoria de Artistas</p>
+    </section>
+
+    <!-- ADMIN PANEL -->
+    <section class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <div>
+                <div class="section-label">Panel de administración</div>
+                <h2 class="form-title" style="margin-bottom:0">Respuestas recibidas</h2>
+            </div>
+            <div class="admin-actions">
+                <button class="admin-btn" onclick="exportCSV()">⬇ Exportar CSV</button>
+                <button class="admin-btn danger" onclick="clearAll()">🗑 Limpiar todo</button>
+                <button class="admin-btn" onclick="toggleAdmin()" style="background:#555">✕ Cerrar</button>
+            </div>
+        </div>
+
+        <div class="stats-row" id="statsRow"></div>
+
+        <div class="table-wrap">
+            <table class="entries-table" id="entriesTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Barrio</th>
+                        <th>Celular</th>
+                        <th>Disciplinas</th>
+                        <th>Nivel</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody id="entriesTbody"></tbody>
+            </table>
+            <div class="empty-state" id="emptyState" style="display:none">
+                <div class="ico">📋</div>
+                <p>Aún no hay inscripciones registradas.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        © 2025 Cultura Viva · Todos los derechos reservados · Formulario diseñado con ♥ para la comunidad artística
+    </footer>
+
+    <script>
+        // ─── DATA STORE (in-memory) ───
+        let entries = [];
+
+        // ─── QR ───
+        window.addEventListener('load', () => {
+            const url = 'https://culturaviva7.github.io/Cultura-viva/cultura-viva-formulario.html';
+            new QRCode(document.getElementById('qrcode'), {
+                text: url,
+                width: 180,
+                height: 180,
+                colorDark: '#0d0d0d',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        });
+
+        // ─── FORM SUBMIT ───
+        function submitForm(e) {
+            e.preventDefault();
+
+            const getChecked = (name) =>
+                [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value);
+
+            const entry = {
+                id: Date.now(),
+                fecha: new Date().toLocaleString('es-CO'),
+                nombre: document.getElementById('nombre').value.trim(),
+                edad: document.querySelector('input[name="edad"]:checked')?.value || '',
+                genero: document.querySelector('input[name="genero"]:checked')?.value || '',
+                barrio: document.getElementById('barrio').value.trim(),
+                celular: document.getElementById('celular').value.trim(),
+                correo: document.getElementById('correo').value.trim(),
+                redes: document.getElementById('redes').value.trim(),
+                disciplinas: [
+                    ...getChecked('disciplina'),
+                    document.getElementById('otraDisciplina').value.trim()
+                ].filter(Boolean).join(', '),
+                nivel: document.querySelector('input[name="nivel"]:checked')?.value || '',
+                roles: [
+                    ...getChecked('rol'),
+                    document.getElementById('otroRol').value.trim()
+                ].filter(Boolean).join(', '),
+                colectivo: document.querySelector('input[name="colectivo"]:checked')?.value || '',
+                nombreColectivo: document.getElementById('nombreColectivo').value.trim(),
+                intereses: getChecked('interes').join(', '),
+                disponibilidad: getChecked('disponibilidad').join(', '),
+                infoWhatsapp: document.querySelector('input[name="infoWhatsapp"]:checked')?.value || '',
+                autorizo: document.getElementById('autorizo').checked ? 'Sí' : 'No'
+            };
+
+            entries.push(entry);
+
+            // ─── ENVIAR A GOOGLE SHEETS ───
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzpgjm-qx9yvRWaSM4iYkEscvKrO_Rb7jH7E8antwd1U6pZ_bsdKXNN0gNLMnvDUgX-qw/exec';
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Enviando...';
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify(entry)
+            })
+                .then(() => {
+                    document.getElementById('formWrap').style.display = 'none';
+                    document.getElementById('successScreen').style.display = 'block';
+                    window.scrollTo({ top: document.getElementById('formulario').offsetTop - 80, behavior: 'smooth' });
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '✦ Enviar inscripción';
+                })
+                .catch(() => {
+                    // Aunque haya error de red, igual guardamos localmente y mostramos éxito
+                    document.getElementById('formWrap').style.display = 'none';
+                    document.getElementById('successScreen').style.display = 'block';
+                    window.scrollTo({ top: document.getElementById('formulario').offsetTop - 80, behavior: 'smooth' });
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '✦ Enviar inscripción';
+                });
+        }
+
+        function resetForm() {
+            document.getElementById('mainForm').reset();
+            document.getElementById('formWrap').style.display = 'block';
+            document.getElementById('successScreen').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('formulario').offsetTop - 80, behavior: 'smooth' });
+        }
+
+        // ─── ADMIN ───
+        function toggleAdmin() {
+            const panel = document.getElementById('adminPanel');
+            const visible = panel.style.display === 'block';
+            panel.style.display = visible ? 'none' : 'block';
+            if (!visible) {
+                renderAdmin();
+                panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function renderAdmin() {
+            const tbody = document.getElementById('entriesTbody');
+            const empty = document.getElementById('emptyState');
+            const statsRow = document.getElementById('statsRow');
+
+            // Stats
+            const disciplines = {};
+            entries.forEach(e => {
+                e.disciplinas.split(', ').forEach(d => {
+                    if (d) disciplines[d] = (disciplines[d] || 0) + 1;
+                });
+            });
+            const topDisc = Object.entries(disciplines).sort((a, b) => b[1] - a[1])[0];
+
+            statsRow.innerHTML = `
+    <div class="stat-card"><div class="num">${entries.length}</div><div class="lbl">Inscripciones</div></div>
+    <div class="stat-card"><div class="num">${new Set(entries.map(e => e.barrio)).size}</div><div class="lbl">Barrios distintos</div></div>
+    <div class="stat-card"><div class="num">${entries.filter(e => e.infoWhatsapp === 'Sí').length}</div><div class="lbl">Aceptan info WA</div></div>
+    <div class="stat-card"><div class="num" style="font-size:1.3rem">${topDisc ? topDisc[0].split(' ')[0] : '—'}</div><div class="lbl">Disciplina más frecuente</div></div>
+  `;
+
+            if (entries.length === 0) {
+                tbody.innerHTML = '';
+                empty.style.display = 'block';
+                document.getElementById('entriesTable').style.display = 'none';
+                return;
+            }
+
+            empty.style.display = 'none';
+            document.getElementById('entriesTable').style.display = 'table';
+
+            tbody.innerHTML = entries.map((e, i) => `
+    <tr>
+      <td style="color:#aaa;font-size:0.8rem">${i + 1}</td>
+      <td><strong>${e.nombre}</strong><br><span style="color:#999;font-size:0.78rem">${e.edad} · ${e.genero}</span></td>
+      <td>${e.barrio}</td>
+      <td>${e.celular}<br><span style="color:#999;font-size:0.78rem">${e.correo || '—'}</span></td>
+      <td style="max-width:200px;font-size:0.82rem">${e.disciplinas || '—'}</td>
+      <td><span style="background:rgba(26,107,107,0.1);color:var(--teal);border-radius:100px;padding:3px 10px;font-size:0.78rem">${e.nivel}</span></td>
+      <td style="font-size:0.78rem;color:#999">${e.fecha}</td>
+    </tr>
+  `).join('');
+        }
+
+        // ─── EXPORT CSV ───
+        function exportCSV() {
+            if (entries.length === 0) { alert('No hay inscripciones aún.'); return; }
+
+            const headers = ['#', 'Nombre', 'Edad', 'Género', 'Barrio', 'Celular', 'Correo', 'Redes', 'Disciplinas', 'Nivel', 'Roles', 'Colectivo', 'Nombre Colectivo', 'Intereses', 'Disponibilidad', 'Info WhatsApp', 'Fecha'];
+            const rows = entries.map((e, i) => [
+                i + 1, e.nombre, e.edad, e.genero, e.barrio, e.celular, e.correo, e.redes,
+                e.disciplinas, e.nivel, e.roles, e.colectivo, e.nombreColectivo,
+                e.intereses, e.disponibilidad, e.infoWhatsapp, e.fecha
+            ]);
+
+            const csv = [headers, ...rows].map(r => r.map(c => `"${String(c || '').replace(/"/g, '""')}"`).join(',')).join('\n');
+            const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'CulturaViva_Inscripciones.csv';
+            link.click();
+        }
+
+        function clearAll() {
+            if (!confirm(`¿Eliminar las ${entries.length} inscripciones? Esta acción no se puede deshacer.`)) return;
+            entries = [];
+            renderAdmin();
+        }
+
+        // smooth scroll for CTA
+        document.querySelector('.cta-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('formulario').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html>
